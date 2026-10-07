@@ -1,0 +1,175 @@
+.login-page {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 80px 24px 40px;
+
+  background: var(--color-background);
+
+  box-sizing: border-box;
+}
+
+.login-card {
+  position: relative;
+
+  width: min(100%, 390px);
+
+  min-height: 500px;
+
+  padding: 80px 40px 40px;
+
+  background: #ffffff;
+
+  border: 3px solid #d97818;
+  border-radius: 28px;
+
+  box-sizing: border-box;
+
+  box-shadow: 0 8px 24px rgba(37, 37, 37, 0.08);
+}
+
+/*
+  Mascote apoiado na parte superior
+  do card.
+*/
+.login-card::before {
+  content: '';
+
+  position: absolute;
+
+  width: 250px;
+  height: 120px;
+
+  left: 75%;
+  top: -100px;
+
+  transform: translateX(-50%);
+
+  background-image: url('/images/mascote-login.png');
+
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: contain;
+
+  z-index: 2;
+
+  pointer-events: none;
+}
+
+.login-card__brand {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 25px;
+
+  color: #164a5b;
+
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.login-card__mascot {
+  display: none;
+}
+
+.login-card h1 {
+  margin: 0 0 10px;
+
+  color: #252525;
+
+  font-size: 28px;
+  text-align: center;
+}
+
+.login-card__description {
+  margin: 0 0 28px;
+
+  color: #5f6b73;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+.login-form {
+  display: grid;
+
+  gap: 10px;
+}
+
+.login-form label {
+  color: #252525;
+
+  font-weight: 600;
+}
+
+.login-form input {
+  width: 100%;
+
+  min-height: 46px;
+
+  padding: 10px 12px;
+
+  border: 1px solid #cfd6da;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  font: inherit;
+
+  box-sizing: border-box;
+
+  margin-bottom: 8px;
+}
+
+.login-form input:focus {
+  outline: 2px solid #dceff4;
+
+  border-color: #164a5b;
+}
+
+.login-form button {
+  width: 100%;
+
+  min-height: 46px;
+
+  margin-top: 10px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #d97818;
+
+  color: #ffffff;
+
+  font: inherit;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background: #c56812;
+}
+
+.login-form button:disabled {
+  cursor: wait;
+
+  opacity: 0.7;
+}
+
+.login-form__error {
+  margin: 0 0 4px;
+
+  color: #d9534f;
+
+  line-height: 1.4;
+}

@@ -9,4 +9,4 @@ export async function getDashboardSummary() {
   throw new Error(
     'Dashboard: conexão com o Firestore ainda não configurada.'
   )
-}0
+}

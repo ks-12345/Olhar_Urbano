@@ -6,11 +6,20 @@ import {
   Ban,
   BarChart3,
   Users,
+  LogOut,
 } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import {
+  Link,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom'
+import { signOut } from 'firebase/auth'
+
+import { auth } from '../../services/firebase'
 
 function Sidebar() {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const menuItems = [
     {
@@ -50,10 +59,24 @@ function Sidebar() {
     },
   ]
 
+  async function handleLogout() {
+    try {
+      await signOut(auth)
+      navigate('/login', { replace: true })
+    } catch (error) {
+      console.error(
+        'Erro ao sair da conta:',
+        error,
+      )
+    }
+  }
+
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">
-        <div className="sidebar__brand-icon">🐱</div>
+        <div className="sidebar__brand-icon">
+          🐱
+        </div>
 
         <div>
           <strong>Olhar Urbano</strong>
@@ -66,7 +89,9 @@ function Sidebar() {
         aria-label="Navegação principal"
       >
         {menuItems.map((item) => {
-          const isActive = location.pathname === item.path
+          const isActive =
+            location.pathname === item.path
+
           const Icon = item.icon
 
           return (
@@ -74,16 +99,37 @@ function Sidebar() {
               key={item.path}
               to={item.path}
               className={`sidebar__link ${
-                isActive ? 'sidebar__link--active' : ''
+                isActive
+                  ? 'sidebar__link--active'
+                  : ''
               }`}
-              aria-current={isActive ? 'page' : undefined}
+              aria-current={
+                isActive ? 'page' : undefined
+              }
             >
-              <Icon size={19} strokeWidth={1.8} />
+              <Icon
+                size={19}
+                strokeWidth={1.8}
+              />
+
               <span>{item.label}</span>
             </Link>
           )
         })}
       </nav>
+
+      <button
+        type="button"
+        className="sidebar__logout"
+        onClick={handleLogout}
+      >
+        <LogOut
+          size={19}
+          strokeWidth={1.8}
+        />
+
+        <span>Sair</span>
+      </button>
     </aside>
   )
 }
